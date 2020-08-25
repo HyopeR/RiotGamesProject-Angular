@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+
 import { Region } from '../../model/region.model';
 import {ProcessingCenterRepository} from '../../model/processing-center.repository';
 
@@ -12,8 +14,8 @@ export class SearchComponent implements OnInit {
 
   allRegion: object;
   allRegionTag: string[];
-
   baseRegion: Region;
+
   summonerName: string = '';
 
   constructor(private processingCenterRepository: ProcessingCenterRepository) {
@@ -24,14 +26,13 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() { }
 
-  searchSummonerName(inputSummonerName: string) {
-    this.summonerName = inputSummonerName;
-    this.processingCenterRepository.searchSummonerName(inputSummonerName);
-  }
-
   changeBaseRegion(regionTag) {
     let newRegion = new Region(this.allRegion[regionTag], regionTag);
     this.baseRegion = this.processingCenterRepository.changeBaseRegion(newRegion);
+  }
+
+  searchSummonerName() {
+    this.processingCenterRepository.searchSummonerName(this.summonerName);
   }
 
 }

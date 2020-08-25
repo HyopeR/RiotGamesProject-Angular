@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'root',
-  template: '<router-outlet></router-outlet>'
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
 }
