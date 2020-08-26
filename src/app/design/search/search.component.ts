@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import {Router} from '@angular/router';
 
 import { Region } from '../../model/region.model';
-import {ProcessingCenterRepository} from '../../model/processing-center.repository';
+import {RegionRepository} from '../../model/region.repository';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -20,27 +20,26 @@ export class SearchComponent implements OnInit {
   summonerName: string = '';
 
   constructor(
-    private processingCenterRepository: ProcessingCenterRepository,
+    private regionRepository: RegionRepository,
     private router: Router
   ) { }
 
   ngOnInit() { }
 
   get regions(): object {
-    this.baseRegion = this.processingCenterRepository.serveBaseRegion();
-    this.allRegion = this.processingCenterRepository.serveAllRegion();
-    this.allRegionTag = this.processingCenterRepository.serveAllRegionTag();
+    this.baseRegion = this.regionRepository.serveBaseRegion();
+    this.allRegion = this.regionRepository.serveAllRegion();
+    this.allRegionTag = this.regionRepository.serveAllRegionTag();
     return this.allRegionTag;
   }
 
   changeBaseRegion(regionTag) {
-    let newRegion = new Region(this.allRegion[regionTag], regionTag);
-    this.baseRegion = this.processingCenterRepository.changeBaseRegion(newRegion);
+    this.baseRegion = this.regionRepository.changeBaseRegion(regionTag);
   }
 
   searchSummonerName() {
-    this.processingCenterRepository.getSummoner(this.summonerName);
-    this.router.navigateByUrl('/summoner');
+    console.log(this.baseRegion.tag);
+    this.router.navigateByUrl('/summoner/' + this.baseRegion.tag + '/' + this.summonerName);
   }
 
 }

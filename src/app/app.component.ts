@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {Router} from '@angular/router';
 
-import {ProcessingCenterRepository} from './model/processing-center.repository';
+import {RegionRepository} from './model/region.repository';
 
 @Component({
   // tslint:disable-next-line:component-selector

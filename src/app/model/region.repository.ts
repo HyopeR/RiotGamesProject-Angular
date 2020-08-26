@@ -1,18 +1,15 @@
 import {Injectable, OnInit} from '@angular/core';
 import { Region } from './region.model';
 import {RestService} from './rest.service';
+import {Observable} from 'rxjs';
 
 @Injectable()
-export class ProcessingCenterRepository implements OnInit {
+export class RegionRepository implements OnInit {
 
   // Region
   private allRegions: object;
   private allRegionTag: string[];
   private baseRegion: Region;
-
-  // Summoner
-  private summoner: object;
-  private summonerMatches: object;
 
   /*
     Component oluşmadan önce içeriklerin çekilmesi için
@@ -23,8 +20,7 @@ export class ProcessingCenterRepository implements OnInit {
     this.restService.getAllRegions().subscribe(regions => {
         this.allRegions = regions;
         this.allRegionTag = Object.keys(regions);
-      }
-    );
+    });
   }
 
   ngOnInit() {  }
@@ -42,35 +38,14 @@ export class ProcessingCenterRepository implements OnInit {
     return this.baseRegion;
   }
 
-  serveSummoner(): object {
-    return this.summoner;
-  }
-
-  serveSummonerMatches(): object {
-    return this.summonerMatches;
-  }
-
   // Request services.
-  changeBaseRegion(region: Region): Region {
+  getAllRegions(): Observable<object> {
+    return this.restService.getAllRegions();
+  }
+
+  changeBaseRegion(regionTag: string): Region {
+    let region = new Region(this.allRegions[regionTag.toUpperCase()], regionTag.toUpperCase());
     return this.restService.changeBaseRegion(region);
-  }
-
-  getSummoner(summonerName: string) {
-    this.restService.getSummoner(summonerName)
-      .subscribe(summoner => {
-        this.summoner = summoner;
-        this.getSummonerMatchHistory();
-      });
-  }
-
-  getSummonerMatchHistory() {
-    this.restService.getSummonerMatchHistory(this.summoner)
-      .subscribe(summonerMatchHistory => {
-        this.summonerMatches = summonerMatchHistory;
-
-        console.log(this.summoner);
-        console.log(this.summonerMatches);
-      });
   }
 
 }

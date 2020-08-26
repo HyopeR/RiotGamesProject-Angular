@@ -5,7 +5,7 @@ import { SummonerComponent } from './summoner/summoner.component';
 
 const routes: Routes = [
   {path: 'search', component: SearchComponent},
-  {path: 'summoner', component: SummonerComponent},
+  {path: 'summoner/:region/:summonerName', component: SummonerComponent},
   {path: '**', redirectTo: 'search'}
 ];
 
