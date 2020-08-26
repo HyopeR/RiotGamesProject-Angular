@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ProcessingCenterRepository} from '../model/processing-center.repository';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SummonerComponent implements OnInit {
 
-  constructor() { }
+  summoner: object;
+  summonerMatches: object;
 
-  ngOnInit() {
+  constructor(
+    private processingCenterRepository: ProcessingCenterRepository
+  ) {  }
+
+  ngOnInit() {  }
+
+  get summonerData(): object {;
+    this.summoner = this.processingCenterRepository.serveSummoner();
+    return this.summoner;
+  }
+
+  get summonerMatchesData(): object {
+    this.summonerMatches = this.processingCenterRepository.serveSummonerMatches();
+    return this.summonerMatches;
   }
 
 }

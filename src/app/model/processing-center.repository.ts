@@ -5,21 +5,14 @@ import {RestService} from './rest.service';
 @Injectable()
 export class ProcessingCenterRepository implements OnInit {
 
-  private allRegions: object = {
-    BR1: 'https://br1.api.riotgames.com',
-    EUN1: 'https://eun1.api.riotgames.com',
-    EUW1: 'https://euw1.api.riotgames.com',
-    JP1: 'https://jp1.api.riotgames.com',
-    KR: 'https://kr.api.riotgames.com',
-    LA1: 'https://la1.api.riotgames.com',
-    LA2: 'https://la2.api.riotgames.com',
-    NA1: 'https://na1.api.riotgames.com',
-    OC1: 'https://oc1.api.riotgames.com',
-    TR1: 'https://tr1.api.riotgames.com',
-    RU: 'https://ru.api.riotgames.com'
-  };
+  // Region
+  private allRegions: object;
+  private allRegionTag: string[];
   private baseRegion: Region;
+
+  // Summoner
   private summoner: object;
+  private summonerMatches: object;
 
   /*
     Component oluşmadan önce içeriklerin çekilmesi için
@@ -27,29 +20,57 @@ export class ProcessingCenterRepository implements OnInit {
    */
   constructor(private restService: RestService) {
     this.baseRegion = this.restService.getBaseRegion();
+    this.restService.getAllRegions().subscribe(regions => {
+        this.allRegions = regions;
+        this.allRegionTag = Object.keys(regions);
+      }
+    );
   }
 
   ngOnInit() {  }
 
-  getAllRegion(): object {
+  // Serve component.
+  serveAllRegion(): object {
     return this.allRegions;
-  };
+  }
 
-  getBaseRegion(): Region {
+  serveAllRegionTag(): string[] {
+    return this.allRegionTag;
+  }
+
+  serveBaseRegion(): Region {
     return this.baseRegion;
   }
 
+  serveSummoner(): object {
+    return this.summoner;
+  }
+
+  serveSummonerMatches(): object {
+    return this.summonerMatches;
+  }
+
+  // Request services.
   changeBaseRegion(region: Region): Region {
     return this.restService.changeBaseRegion(region);
   }
 
-  searchSummonerName(summonerName: string) {
+  getSummoner(summonerName: string) {
     this.restService.getSummoner(summonerName)
-      .subscribe(summonerJsonData => {
-        this.summoner = summonerJsonData;
+      .subscribe(summoner => {
+        this.summoner = summoner;
+        this.getSummonerMatchHistory();
+      });
+  }
+
+  getSummonerMatchHistory() {
+    this.restService.getSummonerMatchHistory(this.summoner)
+      .subscribe(summonerMatchHistory => {
+        this.summonerMatches = summonerMatchHistory;
+
         console.log(this.summoner);
-      }
-    );
+        console.log(this.summonerMatches);
+      });
   }
 
 }

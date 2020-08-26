@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable, from} from 'rxjs';
+import {Observable} from 'rxjs';
 
 import {Region} from './region.model';
 import {environment} from '../../environments/environment';
@@ -12,7 +12,7 @@ export class RestService {
     Buradaysa constructor içinde kullanım için http'e aktarılıyor.
    */
 
-  baseRegion: Region = new Region('https://tr1.api.riotgames.com', 'TR1');
+  baseRegion: Region = new Region('https://br1.api.riotgames.com', 'BR1');
 
   constructor(
     private http: HttpClient
@@ -28,14 +28,18 @@ export class RestService {
     return region;
   }
 
+  getAllRegions(): Observable<object> {
+    return this.http.get<object>(environment.apiUrl + 'region');
+  }
+
   // Kullanıcı adı alarak temel bilgileri getiren GET fonksiyonu.
   getSummoner(summonerName: string): Observable<object> {
+    return this.http.get<object>(environment.apiUrl + this.baseRegion.tag + '/summoner/' + summonerName);
+  }
 
-    const data = {
-      url: this.baseRegion.url + '/lol/summoner/v4/summoners/by-name/' + summonerName
-    };
-
-    return this.http.post<object>(environment.apiUrl + '/summoner', data);
+  getSummonerMatchHistory(summoner: object): Observable<object> {
+    // @ts-ignore
+    return this.http.get<object>(environment.apiUrl + this.baseRegion.tag + '/match/history/' + summoner.accountId);
   }
 
 }

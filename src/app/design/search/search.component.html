@@ -16,11 +16,10 @@
 
     <div class="form-group mt-2">
       <select class="custom-select custom-select-sm float-left"
-              [value]="baseRegion.tag"
               (change)="changeBaseRegion($event.target.value)"
       >
         <option
-          *ngFor="let regionTag of allRegionTag"
+          *ngFor="let regionTag of regions"
           value="{{ regionTag }}"
         >{{ regionTag }}</option>
       </select>
