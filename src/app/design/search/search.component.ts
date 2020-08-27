@@ -1,14 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import {Observable} from 'rxjs';
-import {isEmpty} from 'lodash';
-
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 
 import { Region } from '../../model/region.model';
 import {RegionRepository} from '../../model/region.repository';
-import {map, take} from 'rxjs/operators';
-import {logger} from 'codelyzer/util/logger';
 import {SummonerRepository} from '../../model/summoner.repository';
 
 @Component({
@@ -22,7 +16,6 @@ export class SearchComponent implements OnInit {
   allRegion: object;
   allRegionTag: string[];
   baseRegion: Region;
-
 
   summonerName: string = '';
 
@@ -45,6 +38,14 @@ export class SearchComponent implements OnInit {
 
   changeBaseRegion(regionTag) {
     this.baseRegion = this.regionRepository.changeBaseRegion(regionTag);
+  }
+
+  searchSummoner() {
+    this.summonerRepository.getSummoner(this.summonerName).then(summonerData => {
+      this.summonerRepository.getSummonerMatchHistory(summonerData).then(summonerMatchData => {
+        console.log(summonerData);
+      });
+    });
   }
 
 }
