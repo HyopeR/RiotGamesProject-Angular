@@ -8,9 +8,8 @@ export class SummonerRepository implements OnInit {
   summoner: object;
   summonerMatches: object;
 
-  constructor(private restService: RestService) { }
-
-  ngOnInit() {  }
+  constructor(private restService: RestService) {}
+  ngOnInit() {}
 
   // Serve summoner.
   serveSummoner(): object {
@@ -38,7 +37,7 @@ export class SummonerRepository implements OnInit {
 
       this.restService.getSummonerMatchHistory(summoner).subscribe(summonerMatchesData => {
         this.summonerMatches = summonerMatchesData;
-        return resolve(summonerMatchesData)
+        return resolve(summonerMatchesData);
       });
 
     });

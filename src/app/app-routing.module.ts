@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SearchComponent } from './design/search/search.component';
+
+import { HomeComponent } from './design/home/home.component';
 import { SummonerComponent } from './summoner/summoner.component';
 
 const routes: Routes = [
-  {path: 'search', component: SearchComponent},
+  {path: 'home', component: HomeComponent},
   {path: 'summoner/:region/:summonerName', component: SummonerComponent},
-  {path: '**', redirectTo: 'search'}
+  {path: '**', redirectTo: 'home'}
 ];
 
 @NgModule({

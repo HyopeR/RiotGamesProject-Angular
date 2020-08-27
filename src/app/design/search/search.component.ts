@@ -39,8 +39,4 @@ export class SearchComponent implements OnInit {
     this.baseRegion = this.regionRepository.changeBaseRegion(regionTag);
   }
 
-  searchSummonerName() {
-    this.router.navigateByUrl('/summoner/' + this.baseRegion.tag + '/' + this.summonerName);
-  }
-
 }
