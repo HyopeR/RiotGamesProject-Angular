@@ -1,14 +1,14 @@
 import {Injectable, OnInit} from '@angular/core';
 import { Region } from './region.model';
 import {RestService} from './rest.service';
-import {Observable} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 
 @Injectable()
 export class RegionRepository implements OnInit {
 
   // Region
-  private allRegions: object;
-  private allRegionTag: string[];
+  private allRegions: object = {};
+  private allRegionTag: string[] = [];
   private baseRegion: Region;
 
   /*
@@ -17,13 +17,9 @@ export class RegionRepository implements OnInit {
    */
   constructor(private restService: RestService) {
     this.baseRegion = this.restService.getBaseRegion();
-    this.restService.getAllRegions().subscribe(regions => {
-        this.allRegions = regions;
-        this.allRegionTag = Object.keys(regions);
-    });
   }
 
-  ngOnInit() {  }
+  ngOnInit() {}
 
   // Serve component.
   serveAllRegion(): object {
@@ -39,8 +35,16 @@ export class RegionRepository implements OnInit {
   }
 
   // Request services.
-  getAllRegions(): Observable<object> {
-    return this.restService.getAllRegions();
+  getAllRegions() {
+    return new Promise(resolve => {
+
+      this.restService.getAllRegions().subscribe(allRegionsData => {
+        this.allRegionTag = Object.keys(allRegionsData);
+        this.allRegions = allRegionsData;
+        resolve(allRegionsData);
+      });
+
+    });
   }
 
   changeBaseRegion(regionTag: string): Region {

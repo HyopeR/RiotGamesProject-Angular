@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
+import {isEmpty} from 'lodash';
 
 import {RegionRepository} from '../model/region.repository';
 import {SummonerRepository} from '../model/summoner.repository';
@@ -21,21 +22,23 @@ export class SummonerComponent implements OnInit  {
     private regionRepository: RegionRepository,
     private summonerRepository: SummonerRepository,
     private activeRoute: ActivatedRoute
-  ) {
+  ) {  }
+
+  ngOnInit() {
 
     if (this.activeRoute.snapshot.params.region) {
       this.regionRepository.getAllRegions()
-        .subscribe(regions => {
-
+        .then(regions => {
           this.allRegionTag = Object.keys(regions);
           const regionController = this.allRegionTag.includes(this.activeRoute.snapshot.params.region.toUpperCase());
 
           if (this.activeRoute.snapshot.params.summonerName && regionController) {
             this.regionRepository.changeBaseRegion(this.activeRoute.snapshot.params.region);
             this.summonerRepository.getSummoner(this.activeRoute.snapshot.params.summonerName)
-              .subscribe(dataSummoner => {
+              .then(dataSummoner => {
                 this.summoner = dataSummoner;
-                this.summonerRepository.getSummonerMatchHistory(dataSummoner).subscribe(
+                console.log(this.summoner);
+                this.summonerRepository.getSummonerMatchHistory(dataSummoner).then(
                   dataSummonerMatches => {
                     console.log(dataSummonerMatches);
                     this.summonerMatches = dataSummonerMatches;
@@ -44,11 +47,8 @@ export class SummonerComponent implements OnInit  {
               });
 
           }
-
         });
     }
 
   }
-
-  ngOnInit() {  }
 }

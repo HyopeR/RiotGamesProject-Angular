@@ -12,7 +12,7 @@ export class RestService {
     Buradaysa constructor içinde kullanım için http'e aktarılıyor.
    */
 
-  baseRegion: Region = new Region('https://br1.api.riotgames.com', 'BR1');
+  baseRegion: Region = new Region('https://tr1.api.riotgames.com', 'TR1');
 
   constructor(
     private http: HttpClient

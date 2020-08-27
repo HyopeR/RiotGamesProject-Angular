@@ -15,22 +15,24 @@ export class SearchComponent implements OnInit {
 
   allRegion: object;
   allRegionTag: string[];
-  baseRegion: Region ;
+  baseRegion: Region;
 
   summonerName: string = '';
+
+  dataComplete: boolean = false;
 
   constructor(
     private regionRepository: RegionRepository,
     private router: Router
-  ) { }
+  ) {}
 
-  ngOnInit() { }
-
-  get regions(): object {
+  ngOnInit() {
     this.baseRegion = this.regionRepository.serveBaseRegion();
-    this.allRegion = this.regionRepository.serveAllRegion();
-    this.allRegionTag = this.regionRepository.serveAllRegionTag();
-    return this.allRegionTag;
+    this.regionRepository.getAllRegions().then(regions => {
+      this.allRegion = regions;
+      this.allRegionTag = this.regionRepository.serveAllRegionTag();
+      this.dataComplete = true;
+    });
   }
 
   changeBaseRegion(regionTag) {
@@ -38,7 +40,6 @@ export class SearchComponent implements OnInit {
   }
 
   searchSummonerName() {
-    console.log(this.baseRegion.tag);
     this.router.navigateByUrl('/summoner/' + this.baseRegion.tag + '/' + this.summonerName);
   }
 
