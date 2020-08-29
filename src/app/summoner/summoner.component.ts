@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {isEmpty} from 'lodash';
-import {environment} from '../../environments/environment';
 
 import {RegionRepository} from '../model/region.repository';
 import {SummonerRepository} from '../model/summoner.repository';
@@ -12,8 +11,6 @@ import {SummonerRepository} from '../model/summoner.repository';
   templateUrl: './summoner.component.html'
 })
 export class SummonerComponent implements OnInit {
-  profileIconBaseUrl = environment.profileIconBaseUrl;
-
   constructor(
     private regionRepository: RegionRepository,
     private summonerRepository: SummonerRepository,

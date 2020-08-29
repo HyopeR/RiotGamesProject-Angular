@@ -1,20 +1,20 @@
 <div class="row">
 
-  <div class="col-12 col-md-6">
+  <div class="col-12 col-md-4">
 
     <div *ngIf="summonerRepository.summonerDataController">
-      <img src="{{ profileIconBaseUrl }}{{ summonerRepository.summoner.profileIconId }}.png" alt="Profile Icon" width="100" height="100"><br>
-      <span>{{ summonerRepository.summoner.name }}</span><br>
-      <span>{{ summonerRepository.summoner.accountId }}</span>
+      <summoner-card [summoner]="summonerRepository.summoner"></summoner-card>
     </div>
 
     <div *ngIf="!summonerRepository.summonerDataController">
-      Load...
+      <div class="spinner-grow text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
     </div>
 
   </div>
 
-  <div class="col-12 col-md-6">
+  <div class="col-12 col-md-8">
     <div *ngIf="summonerRepository.summonerDataController">
       <div class="row" *ngFor="let match of summonerRepository.summonerMatches['matches']" >
         {{ match.champion }}
@@ -22,7 +22,9 @@
     </div>
 
     <div *ngIf="!summonerRepository.summonerDataController">
-      Load...
+      <div class="spinner-grow text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
     </div>
 
 

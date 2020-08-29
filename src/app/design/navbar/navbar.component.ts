@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { isEmpty } from 'lodash';
+
+import {SummonerRepository} from '../../model/summoner.repository';
+import {RegionRepository} from '../../model/region.repository';
+import {environment} from '../../../environments/environment';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -7,10 +12,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  profileIconBaseUrl = environment.profileIconBaseUrl;
 
-  constructor() { }
+  constructor(
+    private summonerRepository: SummonerRepository,
+    private regionRepository: RegionRepository
+  ) { }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  checkEmpty(x: object): boolean {
+    return !isEmpty(x);
   }
 
 }
