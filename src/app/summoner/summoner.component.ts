@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {isEmpty} from 'lodash';
+import {environment} from '../../environments/environment';
 
 import {RegionRepository} from '../model/region.repository';
 import {SummonerRepository} from '../model/summoner.repository';
@@ -11,6 +12,7 @@ import {SummonerRepository} from '../model/summoner.repository';
   templateUrl: './summoner.component.html'
 })
 export class SummonerComponent implements OnInit {
+  profileIconBaseUrl = environment.profileIconBaseUrl;
 
   constructor(
     private regionRepository: RegionRepository,
@@ -37,6 +39,7 @@ export class SummonerComponent implements OnInit {
     if (this.activeRoute.snapshot.params.summonerName && regionController) {
       this.regionRepository.changeBaseRegion(this.activeRoute.snapshot.params.region);
       this.summonerRepository.getSummoner(this.activeRoute.snapshot.params.summonerName).then(dataSummoner => {
+        console.log(dataSummoner);
         this.summonerRepository.getSummonerMatchHistory(dataSummoner).then(dataSummonerMatches => {
           this.summonerRepository.summonerDataController = true;
         });

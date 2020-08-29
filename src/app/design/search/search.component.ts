@@ -13,6 +13,8 @@ import {SummonerRepository} from '../../model/summoner.repository';
 export class SearchComponent implements OnInit {
   summonerName: string = '';
 
+  sameRegion: boolean = true;
+
   constructor(
     private regionRepository: RegionRepository,
     private summonerRepository: SummonerRepository,
@@ -25,15 +27,17 @@ export class SearchComponent implements OnInit {
   }
 
   changeBaseRegion(regionTag) {
+    this.sameRegion = false;
     this.regionRepository.changeBaseRegion(regionTag);
   }
 
   searchSummoner() {
-    if (isEmpty(this.summonerRepository.summoner) || this.summonerName !== this.summonerRepository.summoner['name']) {
+    if (isEmpty(this.summonerRepository.summoner) || this.summonerName !== this.summonerRepository.summoner['name'] || !this.sameRegion) {
       this.summonerRepository.summonerDataController = false;
       this.summonerRepository.getSummoner(this.summonerName).then(summonerData => {
         this.summonerRepository.getSummonerMatchHistory(summonerData).then(summonerMatchData => {
           this.summonerRepository.summonerDataController = true;
+          this.sameRegion = true;
         });
       });
     }

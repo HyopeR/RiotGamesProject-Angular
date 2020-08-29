@@ -3,6 +3,7 @@
   <div class="col-12 col-md-6">
 
     <div *ngIf="summonerRepository.summonerDataController">
+      <img src="{{ profileIconBaseUrl }}{{ summonerRepository.summoner.profileIconId }}.png" alt="Profile Icon" width="100" height="100"><br>
       <span>{{ summonerRepository.summoner.name }}</span><br>
       <span>{{ summonerRepository.summoner.accountId }}</span>
     </div>
