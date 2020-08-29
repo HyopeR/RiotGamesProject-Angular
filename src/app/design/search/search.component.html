@@ -16,12 +16,12 @@
 
     <div class="form-group mt-2">
       <select class="custom-select custom-select-sm float-left rounded-0"
-              *ngIf="dataComplete"
-              value="{{ baseRegion.tag }}"
+              *ngIf="regionRepository.regionDataController"
+              value="{{ this.regionRepository.baseRegion.tag }}"
               (change)="changeBaseRegion($event.target.value)"
       >
         <option
-          *ngFor="let regionTag of allRegionTag"
+          *ngFor="let regionTag of this.regionRepository.allRegionTag"
           value="{{ regionTag }}"
         >{{ regionTag }}</option>
       </select>
@@ -32,7 +32,7 @@
   <div class="col-6 col-md-3 p-0">
 
     <div class="form-group mt-2">
-      <button (click)="searchSummoner()" routerLink="/summoner/{{ this.baseRegion.tag }}/{{ this.summonerName }}" class="btn-sm btn-primary w-100 rounded-0 border-bottom-0">
+      <button (click)="searchSummoner()" routerLink="/summoner/{{ this.regionRepository.baseRegion.tag }}/{{ this.summonerName }}" class="btn-sm btn-primary w-100 rounded-0 border-bottom-0">
         <small class="text-muted">
           <i class="fas fa-search text-white"></i>
         </small>

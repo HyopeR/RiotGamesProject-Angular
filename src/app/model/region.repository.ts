@@ -1,15 +1,16 @@
 import {Injectable, OnInit} from '@angular/core';
 import { Region } from './region.model';
 import {RestService} from './rest.service';
-import {Observable, Subscription} from 'rxjs';
 
 @Injectable()
 export class RegionRepository implements OnInit {
 
   // Region
-  private allRegions: object = {};
-  private allRegionTag: string[] = [];
-  private baseRegion: Region;
+  public allRegions: object = {};
+  public allRegionTag: string[] = [];
+  public baseRegion: Region;
+
+  public regionDataController = false;
 
   /*
     Component oluşmadan önce içeriklerin çekilmesi için
@@ -21,21 +22,8 @@ export class RegionRepository implements OnInit {
 
   ngOnInit() {}
 
-  // Serve component.
-  serveAllRegion(): object {
-    return this.allRegions;
-  }
-
-  serveAllRegionTag(): string[] {
-    return this.allRegionTag;
-  }
-
-  serveBaseRegion(): Region {
-    return this.baseRegion;
-  }
-
   // Request services.
-  getAllRegions() {
+  getAllRegions(): Promise<object> {
     return new Promise(resolve => {
 
       this.restService.getAllRegions().subscribe(allRegionsData => {
