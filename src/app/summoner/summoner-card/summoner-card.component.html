@@ -11,11 +11,11 @@
       </h4>
       <span>Level: {{ summoner.summonerLevel }}</span><br>
       <span>League Solo: </span>
-      <span *ngIf="!emptyController(summonerLeague.RANKED_SOLO_5x5)">{{ summonerLeague.RANKED_SOLO_5x5.tier }} - {{ summonerLeague.RANKED_SOLO_5x5.rank }}<br></span>
-      <span *ngIf="emptyController(summonerLeague.RANKED_SOLO_5x5)">Unranked<br></span>
+      <span *ngIf="checkEmpty(summonerLeague.RANKED_SOLO_5x5)">{{ summonerLeague.RANKED_SOLO_5x5.tier }} - {{ summonerLeague.RANKED_SOLO_5x5.rank }}<br></span>
+      <span *ngIf="!checkEmpty(summonerLeague.RANKED_SOLO_5x5)">Unranked<br></span>
 
       <span>League Flex: </span>
-      <span *ngIf="!emptyController(summonerLeague.RANKED_FLEX_SR)">{{ summonerLeague.RANKED_FLEX_SR.tier }} - {{ summonerLeague.RANKED_FLEX_SR.rank }}</span>
-      <span *ngIf="emptyController(summonerLeague.RANKED_FLEX_SR)">Unranked</span>
+      <span *ngIf="checkEmpty(summonerLeague.RANKED_FLEX_SR)">{{ summonerLeague.RANKED_FLEX_SR.tier }} - {{ summonerLeague.RANKED_FLEX_SR.rank }}</span>
+      <span *ngIf="!checkEmpty(summonerLeague.RANKED_FLEX_SR)">Unranked</span>
     </div>
 </div>

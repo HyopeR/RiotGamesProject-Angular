@@ -17,7 +17,7 @@
   <div class="col-12 col-md-8">
     <div *ngIf="summonerRepository.summonerMatchesCotroller">
       <div class="row" *ngFor="let match of summonerRepository.summonerMatches['matches']" >
-        {{ match.champion }}
+        {{ match.gameId }}
       </div>
     </div>
 

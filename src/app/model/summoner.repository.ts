@@ -25,6 +25,11 @@ export class SummonerRepository implements OnInit {
 
   // Observable serve component.
   getSummoner(summonerName: string): Promise<object> {
+    this.summoner = {};
+    this.summonerMatches = {};
+    this.summonerLeague['RANKED_SOLO_5x5'] = {};
+    this.summonerLeague['RANKED_FLEX_SR'] = {};
+
     return new Promise(resolve => {
 
       this.restService.getSummoner(summonerName).subscribe(summonerData => {
@@ -86,7 +91,6 @@ export class SummonerRepository implements OnInit {
     const controller = !(includes(data['status'], 404));
     return controller;
   }
-
 
 }
 

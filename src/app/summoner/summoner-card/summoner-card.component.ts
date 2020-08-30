@@ -17,8 +17,8 @@ export class SummonerCardComponent implements OnInit {
   constructor() { }
   ngOnInit() {  }
 
-  emptyController(objectElement: object): boolean {
-    return isEmpty(objectElement);
+  checkEmpty(objectElement: object): boolean {
+    return !isEmpty(objectElement);
   }
 
 }
