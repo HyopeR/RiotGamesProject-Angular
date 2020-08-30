@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import {isEmpty} from 'lodash';
 import {environment} from '../../../environments/environment';
 
 @Component({
@@ -14,7 +15,10 @@ export class SummonerCardComponent implements OnInit {
   profileIconBaseUrl = environment.profileIconBaseUrl;
 
   constructor() { }
-
   ngOnInit() {  }
+
+  emptyController(objectElement: object): boolean {
+    return isEmpty(objectElement);
+  }
 
 }

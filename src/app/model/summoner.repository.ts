@@ -36,7 +36,6 @@ export class SummonerRepository implements OnInit {
 
           this.summoner = summonerData;
           this.summonerDataController = true;
-
         } else {
           this.dataError = summonerData;
         }

@@ -34,7 +34,7 @@ export class SummonerComponent implements OnInit {
     if (this.activeRoute.snapshot.params.summonerName && regionController) {
       this.regionRepository.changeBaseRegion(this.activeRoute.snapshot.params.region);
       this.summonerRepository.getSummoner(this.activeRoute.snapshot.params.summonerName).then(dataSummoner => {
-        console.log(dataSummoner);
+        // console.log(dataSummoner);
       });
     }
   }
