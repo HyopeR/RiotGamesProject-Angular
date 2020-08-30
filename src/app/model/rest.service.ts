@@ -42,4 +42,9 @@ export class RestService {
     return this.http.get<object>(environment.apiUrl + this.baseRegion.tag + '/match/history/' + summoner.accountId);
   }
 
+  getSummonerLeague(summoner: object): Observable<any> {
+    // @ts-ignore
+    return this.http.get<object>(environment.apiUrl + this.baseRegion.tag + '/league/summoner/' + summoner.id);
+  }
+
 }

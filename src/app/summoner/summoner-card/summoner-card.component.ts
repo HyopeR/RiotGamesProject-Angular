@@ -10,6 +10,7 @@ import {environment} from '../../../environments/environment';
 export class SummonerCardComponent implements OnInit {
 
   @Input() summoner: object = {};
+  @Input() summonerLeague: object = {};
   profileIconBaseUrl = environment.profileIconBaseUrl;
 
   constructor() { }

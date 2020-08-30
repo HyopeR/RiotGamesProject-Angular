@@ -25,8 +25,6 @@ export class SummonerComponent implements OnInit {
         this.regionRepository.getAllRegions().then(regions => {
           this.prepareLoadPage();
         });
-      } else {
-        this.prepareLoadPage();
       }
     }
   }
@@ -37,9 +35,6 @@ export class SummonerComponent implements OnInit {
       this.regionRepository.changeBaseRegion(this.activeRoute.snapshot.params.region);
       this.summonerRepository.getSummoner(this.activeRoute.snapshot.params.summonerName).then(dataSummoner => {
         console.log(dataSummoner);
-        this.summonerRepository.getSummonerMatchHistory(dataSummoner).then(dataSummonerMatches => {
-          this.summonerRepository.summonerDataController = true;
-        });
       });
     }
   }

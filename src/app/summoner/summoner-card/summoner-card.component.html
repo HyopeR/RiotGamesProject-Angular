@@ -9,6 +9,8 @@
       <h4>
         {{ summoner.name }}
       </h4>
-      <span>Level: {{ summoner.summonerLevel }}</span>
+      <span>Level: {{ summoner.summonerLevel }}</span><br>
+      <span>League Solo: {{ summonerLeague.RANKED_SOLO_5x5.tier }} - {{ summonerLeague.RANKED_SOLO_5x5.rank }}</span><br>
+      <span>League Flex: {{ summonerLeague.RANKED_FLEX_SR.tier }} - {{ summonerLeague.RANKED_FLEX_SR.rank }}</span>
     </div>
 </div>

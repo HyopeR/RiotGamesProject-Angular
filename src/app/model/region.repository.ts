@@ -37,6 +37,7 @@ export class RegionRepository implements OnInit {
 
   changeBaseRegion(regionTag: string): Region {
     let region = new Region(this.allRegions[regionTag.toUpperCase()], regionTag.toUpperCase());
+    this.baseRegion = region;
     return this.restService.changeBaseRegion(region);
   }
 

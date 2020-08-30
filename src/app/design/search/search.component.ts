@@ -34,11 +34,11 @@ export class SearchComponent implements OnInit {
   searchSummoner() {
     if (isEmpty(this.summonerRepository.summoner) || this.summonerName !== this.summonerRepository.summoner['name'] || !this.sameRegion) {
       this.summonerRepository.summonerDataController = false;
-      this.summonerRepository.getSummoner(this.summonerName).then(summonerData => {
-        this.summonerRepository.getSummonerMatchHistory(summonerData).then(summonerMatchData => {
-          this.summonerRepository.summonerDataController = true;
-          this.sameRegion = true;
-        });
+      this.summonerRepository.summonerLeagueCotroller = false;
+      this.summonerRepository.summonerMatchesCotroller = false;
+
+      this.summonerRepository.getSummoner(this.summonerName).then(dataSummoner => {
+        this.sameRegion = true;
       });
     }
   }
