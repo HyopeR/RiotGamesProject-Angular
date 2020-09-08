@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import {ModelModule} from '../model/model.module';
+import {ModelModule} from '../../moldes/model.module';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
@@ -8,6 +8,7 @@ import {SummonerComponent} from './summoner.component';
 import {MatchDetailComponent} from './match-detail/match-detail.component';
 import {MatchHistoryComponent} from './match-history/match-history.component';
 import { SummonerCardComponent } from './summoner-card/summoner-card.component';
+import {RepositoryModule} from '../../repositories/repository.module';
 
 @NgModule({
   /*
@@ -19,7 +20,7 @@ import { SummonerCardComponent } from './summoner-card/summoner-card.component';
   /*
     Export ile ShopComponentini dışarı gönderiyoruz.
    */
-  imports: [ModelModule, BrowserModule, FormsModule, RouterModule],
+  imports: [ModelModule, RepositoryModule, BrowserModule, FormsModule, RouterModule],
   declarations: [SummonerComponent, MatchDetailComponent, MatchHistoryComponent, SummonerCardComponent],
   exports: [SummonerComponent]
 })

@@ -4,11 +4,10 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import {RestService} from './rest.service';
 import {Region} from './region.model';
-import {RegionRepository} from './region.repository';
-import {SummonerRepository} from './summoner.repository';
 
 @NgModule({
   imports: [HttpClientModule],
-  providers: [RestService, Region, RegionRepository, SummonerRepository]
+  providers: [RestService, Region]
 })
+
 export class ModelModule {}

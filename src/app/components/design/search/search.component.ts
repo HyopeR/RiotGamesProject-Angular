@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { isEmpty } from 'lodash';
 
-import {RegionRepository} from '../../model/region.repository';
-import {SummonerRepository} from '../../model/summoner.repository';
+import {RegionRepository} from '../../../repositories/region.repository';
+import {SummonerRepository} from '../../../repositories/summoner.repository';
 
 @Component({
   // tslint:disable-next-line:component-selector

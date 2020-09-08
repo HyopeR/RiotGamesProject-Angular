@@ -1,10 +1,9 @@
 import {Injectable, OnInit} from '@angular/core';
-import {RestService} from './rest.service';
+import {RestService} from '../moldes/rest.service';
 import {includes} from 'lodash';
 
 @Injectable()
 export class SummonerRepository implements OnInit {
-
   public summoner: object;
   public summonerMatches: object;
   public summonerLeague: object = {};

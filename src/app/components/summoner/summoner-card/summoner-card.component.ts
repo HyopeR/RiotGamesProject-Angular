@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {isEmpty} from 'lodash';
-import {environment} from '../../../environments/environment';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   // tslint:disable-next-line:component-selector

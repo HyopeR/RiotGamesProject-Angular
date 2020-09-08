@@ -1,6 +1,6 @@
 import {Injectable, OnInit} from '@angular/core';
-import { Region } from './region.model';
-import {RestService} from './rest.service';
+import { Region } from '../moldes/region.model';
+import {RestService} from '../moldes/rest.service';
 
 @Injectable()
 export class RegionRepository implements OnInit {
