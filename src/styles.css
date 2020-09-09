@@ -1,5 +1,73 @@
 /* You can add global styles to this file, and also import other style files */
 
+/* Bootstrap Manipulation */
+.bg-light-blue {
+  background-color: #A6E1FA !important;
+}
+
+a.bg-light-blue:focus,
+a.bg-light-blue:hover,
+button.bg-light-blue:focus,
+button.bg-light-blue:hover {
+  background-color: #0E6BA8 !important;
+}
+
+.bg-light-grey {
+  background-color: #f5f6f7 !important;
+}
+
+a.bg-light-grey:focus,
+a.bg-light-grey:hover,
+button.bg-light-grey:focus,
+button.bg-light-grey:hover {
+  background-color: #eff0f1 !important;
+}
+
+.btn-dark-blue {
+  color: #fff;
+  background-color: #0E6BA8;
+  border-color: #0E6BA8
+}
+
+.btn-dark-blue:hover {
+  color: #fff;
+  background-color: #0e5fa8;
+  border-color: #0e5fa8
+}
+
+.btn-dark-blue.focus,
+.btn-dark-blue:focus {
+  color: #fff;
+  background-color: #0e5fa8;
+  border-color: #0e5fa8;
+  box-shadow: 0 0 0 .1rem rgba(38, 143, 255, .5)
+}
+
+.text-dark-blue {
+  color: #0E6BA8!important
+}
+
+a.text-dark-blue:focus,
+a.text-dark-blue:hover {
+  color: #0e5fa8!important
+}
+
+.border-dark-blue {
+  border-color: #0E6BA8!important
+}
+/* Bootstrap Manipulation */
+
+
+/* Summoner Component */
+.summoner-left-cart-view {
+  min-height: 100px;
+}
+
+.summoner-right-cart-view {
+  min-height: 100px;
+}
+
 .rounded-10 {
   border-radius: 10px;
 }
+/* Summoner Component */

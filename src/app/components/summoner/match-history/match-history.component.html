@@ -1,3 +1,7 @@
-<p>
-  match-history works!
-</p>
+<div>
+  <div class="row" *ngFor="let match of summonerMatches['matches']">
+    <div class="col-md-12">
+      {{ match.gameId }}
+    </div>
+  </div>
+</div>

@@ -9,7 +9,7 @@ import {environment} from '../../../../environments/environment';
   styleUrls: ['./summoner-card.component.css']
 })
 export class SummonerCardComponent implements OnInit {
-
+  @Input() visibility: boolean;
   @Input() summoner: object = {};
   @Input() summonerLeague: object = {};
   profileIconBaseUrl = environment.profileIconBaseUrl;

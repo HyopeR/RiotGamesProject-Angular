@@ -4,9 +4,10 @@
     <div class="form-group mt-2">
       <input type="text" class="form-control form-control-sm float-left rounded-0"
              id="summonerName"
-             placeholder="Summoner Name"
+             [placeholder]="summonerRepository.summoner.loaded ? summonerRepository.summoner.data.name : 'Summoner Name'"
              name="summonerName"
-             [(ngModel)]="summonerName"
+             [(ngModel)]="summonerRepository.summonerName"
+             [value]="summonerRepository.summoner.loaded ? summonerRepository.summoner.data.name : ''"
       />
     </div>
 
@@ -16,14 +17,16 @@
 
     <div class="form-group mt-2">
       <select class="custom-select custom-select-sm float-left rounded-0"
-              *ngIf="regionRepository.regionDataController"
-              value="{{ this.regionRepository.baseRegion.tag }}"
+              *ngIf="regionRepository.regions.loaded"
+              value="{{ this.regionRepository.regions.baseRegion.tag }}"
               (change)="changeBaseRegion($event.target.value)"
       >
         <option
-          *ngFor="let regionTag of this.regionRepository.allRegionTag"
+          *ngFor="let regionTag of this.regionRepository.regions.tags"
           value="{{ regionTag }}"
-        >{{ regionTag }}</option>
+        >
+          {{ regionTag }}
+        </option>
       </select>
     </div>
 
@@ -32,7 +35,12 @@
   <div class="col-6 col-md-3 p-0">
 
     <div class="form-group mt-2">
-      <button (click)="searchSummoner()" routerLink="/summoner/{{ this.regionRepository.baseRegion.tag }}/{{ this.summonerName }}" class="btn-sm btn-primary w-100 rounded-0 border-bottom-0">
+      <button class="btn-sm btn-dark-blue w-100 rounded-0 border-bottom-0"
+        [routerLink]="summonerRepository.summonerName !== ''
+        ? '/summoner/' + regionRepository.regions.baseRegion.tag + '/' + summonerRepository.summonerName
+        : null"
+        (click)="searchSummoner()"
+      >
         <small class="text-muted">
           <i class="fas fa-search text-white"></i>
         </small>

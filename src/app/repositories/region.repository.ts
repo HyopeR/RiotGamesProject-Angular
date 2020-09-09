@@ -1,44 +1,45 @@
 import {Injectable, OnInit} from '@angular/core';
-import { Region } from '../moldes/region.model';
+import {Region} from '../moldes/region.model';
 import {RestService} from '../moldes/rest.service';
 
 @Injectable()
 export class RegionRepository implements OnInit {
 
   // Region
-  public allRegions: object = {};
-  public allRegionTag: string[] = [];
-  public baseRegion: Region;
+  public regions = {
+    data: {},
+    tags: [],
+    baseRegion: {},
+    loading: false,
+    loaded: false
+  };
 
-  public regionDataController = false;
-
-  /*
-    Component oluşmadan önce içeriklerin çekilmesi için
-    asenkron veri çekme işlemleri constructorlar içinde yazılır.
-   */
   constructor(private restService: RestService) {
-    this.baseRegion = this.restService.getBaseRegion();
+    this.regions.baseRegion = this.restService.getBaseRegion();
   }
 
   ngOnInit() {}
 
-  // Request services.
   getAllRegions(): Promise<object> {
+    this.regions.loading = true;
+
     return new Promise(resolve => {
 
-      this.restService.getAllRegions().subscribe(allRegionsData => {
-        this.allRegionTag = Object.keys(allRegionsData);
-        this.allRegions = allRegionsData;
-        resolve(allRegionsData);
-      });
+      this.restService.getAllRegions().subscribe(regions => {
+        this.regions.data = regions;
+        this.regions.tags = Object.keys(regions);
+        this.regions.loading = false;
+        this.regions.loaded = true;
 
+        resolve(regions);
+      });
     });
   }
 
-  changeBaseRegion(regionTag: string): Region {
-    let region = new Region(this.allRegions[regionTag.toUpperCase()], regionTag.toUpperCase());
-    this.baseRegion = region;
-    return this.restService.changeBaseRegion(region);
+  changeBaseRegion(regionTag: string) {
+    let newRegion = new Region(this.regions.data[regionTag.toUpperCase()], regionTag.toUpperCase());
+    this.regions.baseRegion = newRegion;
+    this.restService.changeBaseRegion(newRegion);
   }
 
 }

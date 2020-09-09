@@ -11,6 +11,8 @@ import {SummonerRepository} from '../../repositories/summoner.repository';
   templateUrl: './summoner.component.html'
 })
 export class SummonerComponent implements OnInit {
+  regionTag: string;
+
   constructor(
     private regionRepository: RegionRepository,
     private summonerRepository: SummonerRepository,
@@ -19,23 +21,25 @@ export class SummonerComponent implements OnInit {
   }
 
   ngOnInit() {
-
     if (this.activeRoute.snapshot.params.region) {
-      if (isEmpty(this.regionRepository.allRegions)) {
+      this.regionTag = this.activeRoute.snapshot.params.region;
+
+      if (!this.regionRepository.regions.loaded) {
         this.regionRepository.getAllRegions().then(regions => {
-          this.prepareLoadPage();
+          this.firstRunLoad();
         });
       }
+
     }
   }
 
-  prepareLoadPage() {
-    const regionController = this.regionRepository.allRegionTag.includes(this.activeRoute.snapshot.params.region.toUpperCase());
+  firstRunLoad() {
+    const regionController = this.regionRepository.regions.tags.includes(this.regionTag.toUpperCase());
     if (this.activeRoute.snapshot.params.summonerName && regionController) {
-      this.regionRepository.changeBaseRegion(this.activeRoute.snapshot.params.region);
-      this.summonerRepository.getSummoner(this.activeRoute.snapshot.params.summonerName).then(dataSummoner => {
-        // console.log(dataSummoner);
-      });
+      this.summonerRepository.summonerName = this.activeRoute.snapshot.params.summonerName;
+
+      this.regionRepository.changeBaseRegion(this.regionTag);
+      this.summonerRepository.getSummoner(this.summonerRepository.summonerName);
     }
   }
 

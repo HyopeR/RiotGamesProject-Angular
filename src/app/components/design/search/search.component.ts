@@ -11,8 +11,6 @@ import {SummonerRepository} from '../../../repositories/summoner.repository';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  summonerName: string = '';
-
   sameRegion: boolean = true;
 
   constructor(
@@ -21,9 +19,7 @@ export class SearchComponent implements OnInit {
   ) {  }
 
   ngOnInit() {
-    this.regionRepository.getAllRegions().then(regions => {
-      this.regionRepository.regionDataController = true;
-    });
+    this.regionRepository.getAllRegions();
   }
 
   changeBaseRegion(regionTag) {
@@ -32,14 +28,17 @@ export class SearchComponent implements OnInit {
   }
 
   searchSummoner() {
-    if (isEmpty(this.summonerRepository.summoner) || this.summonerName !== this.summonerRepository.summoner['name'] || !this.sameRegion) {
-      this.summonerRepository.summonerDataController = false;
-      this.summonerRepository.summonerLeagueCotroller = false;
-      this.summonerRepository.summonerMatchesCotroller = false;
-
-      this.summonerRepository.getSummoner(this.summonerName).then(dataSummoner => {
-        this.sameRegion = true;
-      });
+    if ((
+      isEmpty(this.summonerRepository.summoner.data)
+        &&
+      this.summonerRepository.summonerName !== this.summonerRepository.oldSummonerName
+    ) || (
+        this.summonerRepository.summonerName !== '' &&
+        (this.summonerRepository.summonerName !== this.summonerRepository.oldSummonerName || !this.sameRegion)
+      )
+    ) {
+      this.summonerRepository.getSummoner(this.summonerRepository.summonerName);
+      this.sameRegion = true;
     }
   }
 

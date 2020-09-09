@@ -1,32 +1,53 @@
 <div class="row">
 
   <div class="col-12 col-md-4">
+    <div class="row">
+      <div class="col-12">
 
-    <div *ngIf="summonerRepository.summonerDataController && summonerRepository.summonerLeagueCotroller">
-      <summoner-card [summoner]="summonerRepository.summoner" [summonerLeague]="summonerRepository.summonerLeague"></summoner-card>
-    </div>
+        <div class="summoner-left-cart-view p-3 mt-2 mb-2 bg-light-grey rounded-10">
 
-    <div *ngIf="!summonerRepository.summonerDataController && !summonerRepository.summonerLeagueCotroller">
-      <div class="spinner-border text-primary" role="status">
-        <span class="sr-only">Loading...</span>
+          <div *ngIf="!summonerRepository.summoner.error.status">
+            <summoner-card
+              [visibility]="summonerRepository.summoner.loaded"
+              [summoner]="summonerRepository.summoner.data"
+              [summonerLeague]="summonerRepository.summonerLeague.data">
+            </summoner-card>
+
+            <spinner [visibility]="summonerRepository.summoner.loading"></spinner>
+          </div>
+          <div *ngIf="summonerRepository.summoner.error.status">
+            <error [error]="summonerRepository.summoner.error"></error>
+          </div>
+
+        </div>
+
       </div>
     </div>
-
   </div>
 
   <div class="col-12 col-md-8">
-    <div *ngIf="summonerRepository.summonerMatchesCotroller">
-      <div class="row" *ngFor="let match of summonerRepository.summonerMatches['matches']" >
-        {{ match.gameId }}
+    <div class="row">
+      <div class="col-12">
+
+        <div class="summoner-right-cart-view p-3 mt-2 mb-2 bg-light-grey rounded-10">
+
+          <div *ngIf="!summonerRepository.summonerMatches.error.status">
+            <match-history
+              [visibility]="summonerRepository.summonerMatches.loaded"
+              [summonerMatches]="summonerRepository.summonerMatches.data">
+            </match-history>
+
+            <spinner [visibility]="summonerRepository.summonerMatches.loading"></spinner>
+          </div>
+
+          <div *ngIf="summonerRepository.summonerMatches.error.status">
+            <error [error]="summonerRepository.summonerMatches.error"></error>
+          </div>
+
+        </div>
+
       </div>
     </div>
-
-    <div *ngIf="!summonerRepository.summonerMatchesCotroller">
-      <div class="spinner-border text-primary" role="status">
-        <span class="sr-only">Loading...</span>
-      </div>
-    </div>
-
-
   </div>
+
 </div>

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+<nav class="navbar navbar-expand-lg navbar-light bg-light-blue mb-3">
   <a class="navbar-brand" routerLink="/home">Riot Engine</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -7,17 +7,17 @@
   <div class="collapse navbar-collapse row pl-3 pr-3" id="navbarNav">
     <ul class="navbar-nav col-12 col-md-8">
 
-      <li class="nav-item" routerLinkActive="active" *ngIf="summonerRepository.summonerDataController">
-        <a class="nav-link" routerLink="/summoner/{{ regionRepository.baseRegion.tag }}/{{ summonerRepository.summoner.name }}">
-            <img src="{{ profileIconBaseUrl }}{{ summonerRepository.summoner.profileIconId }}.png"
+      <li class="nav-item" routerLinkActive="active" *ngIf="summonerRepository.summoner.loaded">
+        <a class="nav-link" routerLink="/summoner/{{ regionRepository.regions.baseRegion.tag }}/{{ summonerRepository.summoner.data.name }}">
+            <img src="{{ profileIconBaseUrl }}{{ summonerRepository.summoner.data.profileIconId }}.png"
                  alt="Summoner Icon Navbar"
                  class="rounded-circle mini-icon-navbar border border-primary"
             >
-          {{ summonerRepository.summoner.name }}
+          {{ summonerRepository.summoner.data.name }}
         </a>
       </li>
 
-      <li class="nav-item" *ngIf="!summonerRepository.summonerDataController && checkEmpty(this.summonerRepository.summoner)">
+      <li class="nav-item" *ngIf="!summonerRepository.summoner.loaded && checkEmpty(summonerRepository.summoner.data)">
         <a class="nav-link">
           <div class="spinner-border text-primary mini-icon-navbar" role="status"></div>
         </a>

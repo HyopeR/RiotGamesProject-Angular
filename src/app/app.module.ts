@@ -7,10 +7,12 @@ import { RepositoryModule } from './repositories/repository.module';
 import { AppRoutingModule  } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+import { HomeComponent } from './components/page/home/home.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
