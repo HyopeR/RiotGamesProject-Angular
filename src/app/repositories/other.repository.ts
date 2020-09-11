@@ -24,28 +24,29 @@ export class OtherRepository implements OnInit {
   };
 
   constructor(private restService: RestService) {
+    this.restService.getLanguages().subscribe(languages => {
+      this.languages.data = languages;
+      this.languages.loaded = true;
+    });
+
     this.restService.getSeasons().subscribe(seasons => {
       this.seasons.data = seasons;
       this.seasons.loaded = true;
-      console.log(seasons);
     });
 
     this.restService.getQueues().subscribe(queues => {
       this.queues.data = queues;
       this.queues.loaded = true;
-      console.log(queues);
-    });
-
-    this.restService.getLanguages().subscribe(languages => {
-      this.languages.data = languages;
-      this.languages.loaded = true;
     });
   }
 
   ngOnInit() {}
 
+  findSeasonById(seasonId: number): object {
+    return this.seasons.data.find(season => season.id === seasonId);
+  }
+
   findQueueById(queueId: number): object {
-    console.log(this.queues.data.find(queue => queue.queueId === queueId));
     return this.queues.data.find(queue => queue.queueId === queueId);
   }
 
