@@ -13,19 +13,23 @@ export class RestService {
    */
 
   baseRegion: Region = new Region('https://tr1.api.riotgames.com', 'TR1');
+  baseLanguage: string = 'tr_TR';
+  baseVersion: string;
 
   constructor(
     private http: HttpClient
   ) { }
 
-  getBaseRegion() {
-    return this.baseRegion;
-  }
+  // About started project get functions.
+  getBaseRegion = () => this.baseRegion;
 
   // Region seçimi ile base url tabanının değişikliği.
-  changeBaseRegion(region: Region): Region {
+  changeBaseRegion(region: Region) {
     this.baseRegion = region;
-    return region;
+  }
+
+  changeBaseVersion(version: string) {
+    this.baseVersion = version;
   }
 
   getAllRegions(): Observable<object> {
@@ -44,8 +48,17 @@ export class RestService {
     return this.http.get<[]>(environment.apiUrl + 'other/queues');
   }
 
+  getVersions() {
+    return this.http.get<[]>(environment.apiUrl + 'other/versions');
+  }
 
-  // Kullanıcı adı alarak temel bilgileri getiren GET fonksiyonu.
+  getChampions() {
+    return this.http.get<[]>(environment.apiUrl + this.baseRegion.tag + '/champion/' + this.baseVersion + '/' + this.baseLanguage);
+  }
+
+
+
+  // Summoner About.
   getSummoner(summonerName: string): Observable<object> {
     return this.http.get<object>(environment.apiUrl + this.baseRegion.tag + '/summoner/' + summonerName);
   }

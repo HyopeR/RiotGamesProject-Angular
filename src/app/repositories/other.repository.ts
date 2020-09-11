@@ -42,6 +42,17 @@ export class OtherRepository implements OnInit {
 
   ngOnInit() {}
 
+  getVersions() {
+    return new Promise(resolve => {
+
+      this.restService.getVersions().subscribe(versions => {
+        // @ts-ignore
+        this.restService.changeBaseVersion(versions[0]);
+        resolve('Completed!');
+      });
+    });
+  }
+
   findSeasonById(seasonId: number): object {
     return this.seasons.data.find(season => season.id === seasonId);
   }

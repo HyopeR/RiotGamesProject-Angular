@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {OtherRepository} from './repositories/other.repository';
+import {ChampionRepository} from './repositories/champion.repository';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -9,9 +10,12 @@ import {OtherRepository} from './repositories/other.repository';
 })
 export class AppComponent {
 
-  constructor(private otherRepository: OtherRepository) {
-    setTimeout(() => {
-      otherRepository.findQueueById(430);
-    }, 2000);
+  constructor(
+    private otherRepository: OtherRepository,
+    private championRepository: ChampionRepository
+  ) {
+    otherRepository.getVersions().then(() => {
+      championRepository.getChampions();
+    });
   }
 }
