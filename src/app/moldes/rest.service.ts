@@ -32,6 +32,19 @@ export class RestService {
     return this.http.get<object>(environment.apiUrl + 'region');
   }
 
+  getLanguages() {
+    return this.http.get<[]>(environment.apiUrl + 'other/languages');
+  }
+
+  getSeasons() {
+    return this.http.get<[]>(environment.apiUrl + 'other/seasons');
+  }
+
+  getQueues() {
+    return this.http.get<[]>(environment.apiUrl + 'other/queues');
+  }
+
+
   // Kullanıcı adı alarak temel bilgileri getiren GET fonksiyonu.
   getSummoner(summonerName: string): Observable<object> {
     return this.http.get<object>(environment.apiUrl + this.baseRegion.tag + '/summoner/' + summonerName);

@@ -1,5 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
 
+/* Main Design */
+.top-relative-area {
+  position: relative;
+  width: 100%;
+  height: 450px;
+}
+
+.top-shelf {
+  height: 450px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 0 -100px;
+  background-image: url("./assets/img/top-img.png");
+}
+
+/* Main Design */
+
 /* Bootstrap Manipulation */
 .bg-light-blue {
   background-color: #A6E1FA !important;
@@ -56,7 +78,6 @@ a.text-dark-blue:hover {
   border-color: #0E6BA8!important
 }
 /* Bootstrap Manipulation */
-
 
 /* Summoner Component */
 .summoner-left-cart-view {

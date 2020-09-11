@@ -9,6 +9,7 @@ import {Component, Input, OnInit} from '@angular/core';
 export class SpinnerComponent implements OnInit {
 
   @Input() visibility: boolean;
+  @Input() size: number;
   constructor() { }
 
   ngOnInit() {
