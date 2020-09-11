@@ -1,7 +1,24 @@
 <div>
   <div class="row" *ngFor="let match of summonerMatches['matches']">
     <div class="col-md-12">
-      {{ match.gameId }}
+
+      <div *ngIf="findChampionByKey(match.champion) as champion">
+        <img
+          src="{{ squareChampionBaseUrl }}{{ champion[1]['image']['full'] }}"
+          alt="{{ champion[0] }}"
+          width="50"
+          height="50">
+        <span>{{ champion[0] }}</span>
+      </div>
+
+      <span> {{ match.gameId }} </span> <br>
+
+      <span> {{ findSeasonById(match.season)['season'] }} </span> <br>
+
+      <p *ngIf="findQueueById(match.queue) as queue">
+        {{ queue.map }}
+        {{ queue.description }}
+      </p>
     </div>
   </div>
 </div>

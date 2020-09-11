@@ -53,7 +53,11 @@ export class RestService {
   }
 
   getChampions() {
-    return this.http.get<[]>(environment.apiUrl + this.baseRegion.tag + '/champion/' + this.baseVersion + '/' + this.baseLanguage);
+    return this.http.get<object>(environment.apiUrl + this.baseRegion.tag + '/champion/' + this.baseVersion + '/' + this.baseLanguage);
+  }
+
+  getItems() {
+    return this.http.get<object>(environment.apiUrl + this.baseRegion.tag + '/item/' + this.baseVersion + '/' + this.baseLanguage);
   }
 
 

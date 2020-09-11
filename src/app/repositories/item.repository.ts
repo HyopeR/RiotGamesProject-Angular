@@ -3,10 +3,10 @@ import {RestService} from '../moldes/rest.service';
 import {includes, isEmpty} from 'lodash';
 
 @Injectable()
-export class ChampionRepository implements OnInit {
+export class ItemRepository implements OnInit {
 
-  // Chapions
-  public champions = {
+  // Items
+  public items = {
     data: [],
     loading: false,
     loaded: false,
@@ -20,19 +20,18 @@ export class ChampionRepository implements OnInit {
 
   ngOnInit() {}
 
-  getChampions() {
-    this.champions.loading = true;
+  getItems() {
+    this.items.loading = true;
 
-    this.restService.getChampions().subscribe(championsData => {
-      if (this.requestValidCheck(championsData)) {
+    this.restService.getItems().subscribe(itemsData => {
+      if (this.requestValidCheck(itemsData)) {
         // @ts-ignore
-        this.champions.data = Object.entries(championsData.data);
-        this.champions.loading = false;
-        this.champions.loaded = true;
-        this.champions.error = { status: false,  message: '' };
-
+        this.items.data = Object.entries(itemsData.data);
+        this.items.loading = false;
+        this.items.loaded = true;
+        this.items.error = { status: false,  message: '' };
       } else {
-        this.champions.error = { status: true, message: 'Summoner League Not Found.'};
+        this.items.error = { status: true, message: 'Summoner League Not Found.'};
       }
 
     });

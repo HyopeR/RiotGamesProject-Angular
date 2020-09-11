@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   apiUrl: 'http://localhost:3000/api/',
-  profileIconBaseUrl: 'http://ddragon.leagueoflegends.com/cdn/10.16.1/img/profileicon/'
+  profileIconBaseUrl: 'http://ddragon.leagueoflegends.com/cdn/10.16.1/img/profileicon/',
+  squareChampionIconBaseUrl: 'http://ddragon.leagueoflegends.com/cdn/10.18.1/img/champion/'
 };
 
 /*

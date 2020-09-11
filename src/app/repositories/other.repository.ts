@@ -1,5 +1,4 @@
 import {Injectable, OnInit} from '@angular/core';
-import {Region} from '../moldes/region.model';
 import {RestService} from '../moldes/rest.service';
 
 @Injectable()
@@ -51,14 +50,6 @@ export class OtherRepository implements OnInit {
         resolve('Completed!');
       });
     });
-  }
-
-  findSeasonById(seasonId: number): object {
-    return this.seasons.data.find(season => season.id === seasonId);
-  }
-
-  findQueueById(queueId: number): object {
-    return this.queues.data.find(queue => queue.queueId === queueId);
   }
 
 }
