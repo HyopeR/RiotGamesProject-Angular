@@ -27,13 +27,13 @@ export class ItemRepository implements OnInit {
       if (this.requestValidCheck(itemsData)) {
         // @ts-ignore
         this.items.data = Object.entries(itemsData.data);
-        this.items.loading = false;
         this.items.loaded = true;
         this.items.error = { status: false,  message: '' };
       } else {
-        this.items.error = { status: true, message: 'Summoner League Not Found.'};
+        this.items.error = { status: true, message: 'An error occurred while fetching data.'};
       }
 
+      this.items.loading = false;
     });
   }
 

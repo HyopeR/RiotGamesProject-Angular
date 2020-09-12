@@ -27,13 +27,13 @@ export class SpellRepository implements OnInit {
       if (this.requestValidCheck(itemsData)) {
         // @ts-ignore
         this.spells.data = Object.entries(itemsData.data);
-        this.spells.loading = false;
         this.spells.loaded = true;
         this.spells.error = { status: false,  message: '' };
       } else {
-        this.spells.error = { status: true, message: 'Summoner League Not Found.'};
+        this.spells.error = { status: true, message: 'An error occurred while fetching data.'};
       }
 
+      this.spells.loading = false;
     });
   }
 

@@ -15,7 +15,7 @@
 
 <ng-container *ngFor="let match of summonerMatches['matches']; let i=index">
 
-  <div class="row mt-1 mb-1" *ngIf="i < showCount">
+  <div class="row mt-2 mb-2" *ngIf="i < showCount">
 
     <div class="col-3 pr-0" *ngIf="findChampionByKey(match.champion) as champion">
 
@@ -52,12 +52,13 @@
 
     </div>
 
-    <div class="col-1 pl-0">
+    <div class="col-1 pl-0" type="button" (click)="selectMatch(i)">
       <div class="d-flex align-items-center justify-content-center h-100 border border-left-0 border-dark-blue bg-dark-blue rounded-r-10">
         <i class="fa fa-arrow-down text-white" style="font-size: 20px"></i>
       </div>
     </div>
 
+    <match-detail *ngIf="match.gameId === matchRepository.match.selectedMatch.gameId"></match-detail>
   </div>
 
 </ng-container>

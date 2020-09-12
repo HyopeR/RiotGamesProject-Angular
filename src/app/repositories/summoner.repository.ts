@@ -55,7 +55,6 @@ export class SummonerRepository implements OnInit {
       if (this.requestValidCheck(summonerData)) {
 
         this.summoner.data = summonerData;
-        this.summoner.loading = false;
         this.summoner.loaded = true;
         this.summoner.error = { status: false, message: ''};
         this.getSummonerMatchHistory(summonerData);
@@ -69,6 +68,7 @@ export class SummonerRepository implements OnInit {
 
       }
 
+      this.summoner.loading = false;
       this.oldSummonerName = summonerName;
     });
   }
@@ -80,7 +80,6 @@ export class SummonerRepository implements OnInit {
       if (this.requestValidCheck(summonerMatchData)) {
 
         this.summonerMatches.data = summonerMatchData;
-        this.summonerMatches.loading = false;
         this.summonerMatches.loaded = true;
         this.summonerMatches.error = { status: false, message: ''};
 
@@ -89,6 +88,8 @@ export class SummonerRepository implements OnInit {
         this.summonerMatches.error = { status: true, message: 'Summoner Matches Not Found.'};
 
       }
+
+      this.summonerMatches.loading = false;
     });
   }
 
@@ -106,7 +107,6 @@ export class SummonerRepository implements OnInit {
 
         });
 
-        this.summonerLeague.loading = false;
         this.summonerLeague.loaded = true;
         this.summonerLeague.error = { status: false, message: ''};
 
@@ -116,6 +116,7 @@ export class SummonerRepository implements OnInit {
 
       }
 
+      this.summonerLeague.loading = false;
     });
   }
 

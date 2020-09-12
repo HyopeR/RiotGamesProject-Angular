@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {MatchRepository} from '../../../repositories/match.repository';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -8,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MatchDetailComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private matchRepository: MatchRepository
+  ) {}
 
   ngOnInit() {
   }

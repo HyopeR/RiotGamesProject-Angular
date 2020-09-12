@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ChampionRepository} from '../../../repositories/champion.repository';
 import {OtherRepository} from '../../../repositories/other.repository';
+import {MatchRepository} from '../../../repositories/match.repository';
 import {environment} from '../../../../environments/environment';
 import * as moment from 'moment';
-import {Observable} from 'rxjs';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -17,14 +17,21 @@ export class MatchHistoryComponent implements OnInit {
 
   squareChampionBaseUrl = environment.squareChampionIconBaseUrl;
   showCount = 20;
+  selectedIndex: number;
 
   constructor(
     private championRepository: ChampionRepository,
-    private otherRepository: OtherRepository
+    private otherRepository: OtherRepository,
+    private matchRepository: MatchRepository
   ) {}
 
   changeShowRate() {
     this.showCount += 20;
+  }
+
+  selectMatch(index) {
+    this.selectedIndex !== index ? this.matchRepository.getMatch(this.summonerMatches['matches'][index]) : null;
+    this.selectedIndex = index;
   }
 
   findChampionByKey(championKey: string): Array<any> {

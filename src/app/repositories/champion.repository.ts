@@ -27,14 +27,14 @@ export class ChampionRepository implements OnInit {
       if (this.requestValidCheck(championsData)) {
         // @ts-ignore
         this.champions.data = Object.entries(championsData.data);
-        this.champions.loading = false;
         this.champions.loaded = true;
         this.champions.error = { status: false,  message: '' };
 
       } else {
-        this.champions.error = { status: true, message: 'Summoner League Not Found.'};
+        this.champions.error = { status: true, message: 'An error occurred while fetching data.'};
       }
 
+      this.champions.loading = false;
     });
   }
 
