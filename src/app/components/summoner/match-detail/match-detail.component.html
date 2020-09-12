@@ -1,9 +1,32 @@
-<div class="row p-3">
-  <div class="col-md-12">
-    <div *ngIf="matchRepository.match.error.status">
-      <error [error]="matchRepository.match.error"></error>
+<div class="row p-3" *ngIf="!matchRepository.match.error.status">
+  <ng-container>
+    <div class="col-md-12" *ngIf="!matchRepository.match.loaded">
+      <spinner [visibility]="matchRepository.match.loading"></spinner>
     </div>
 
-    <spinner [visibility]="matchRepository.match.loading"></spinner>
-  </div>
+    <div class="col-md-12" *ngIf="matchRepository.match.loaded">
+
+      <div class="row"
+           *ngFor="let character of matchRepository.match.data['participants'];
+           let i=index"
+      >
+
+        <div class="col-12">
+          <div *ngIf="findChampionByKey(character.championId) as hero">
+            <img src="{{ squareChampionBaseUrl }}{{ hero[1]['image']['full'] }}"
+              width="35px"
+              height="35px"
+            >
+            {{ matchRepository.match.data['participantIdentities'][i].player.summonerName }}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </ng-container>
+
+</div>
+
+<div *ngIf="matchRepository.match.error.status">
+  <error [error]="matchRepository.match.error"></error>
 </div>

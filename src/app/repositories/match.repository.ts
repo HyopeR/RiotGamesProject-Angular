@@ -24,14 +24,15 @@ export class MatchRepository implements OnInit {
   ngOnInit() {}
 
   getMatch(match: object) {
+    this.statesReset();
+
     // @ts-ignore
     this.match.selectedMatch = match;
     this.match.loading = true;
 
     this.restService.getMatch(match).subscribe(matchData => {
-      console.log(matchData);
       if (this.requestValidCheck(matchData)) {
-        this.match.data = matchData.data;
+        this.match.data = matchData;
         this.match.loaded = true;
         this.match.error = { status: false,  message: '' };
       } else {
@@ -40,6 +41,21 @@ export class MatchRepository implements OnInit {
 
       this.match.loading = false;
     });
+  }
+
+  statesReset() {
+    this.match = {
+      data: {},
+      selectedMatch: {
+        gameId: ''
+      },
+      loading: false,
+      loaded: false,
+      error: {
+        status: false,
+        message: ''
+      }
+    };
   }
 
   requestValidCheck(data: object): boolean {
