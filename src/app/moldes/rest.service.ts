@@ -60,6 +60,10 @@ export class RestService {
     return this.http.get<object>(environment.apiUrl + this.baseRegion.tag + '/item/' + this.baseVersion + '/' + this.baseLanguage);
   }
 
+  getSpells() {
+    return this.http.get<object>(environment.apiUrl + this.baseRegion.tag + '/spell/' + this.baseVersion + '/' + this.baseLanguage);
+  }
+
 
 
   // Summoner About.

@@ -5,9 +5,10 @@ import {SummonerRepository} from './summoner.repository';
 import {OtherRepository} from './other.repository';
 import {ChampionRepository} from './champion.repository';
 import {ItemRepository} from './item.repository';
+import {SpellRepository} from './spell.repository';
 
 @NgModule({
   imports: [],
-  providers: [RegionRepository, SummonerRepository, OtherRepository, ChampionRepository, ItemRepository]
+  providers: [RegionRepository, SummonerRepository, OtherRepository, ChampionRepository, ItemRepository, SpellRepository]
 })
 export class RepositoryModule {}

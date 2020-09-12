@@ -9,13 +9,14 @@ import { SearchComponent } from './search/search.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { ErrorComponent } from './error/error.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   /*
     Export ile ShopComponentini dışarı gönderiyoruz.
    */
   imports: [ModelModule, BrowserModule, FormsModule, RouterModule, SwappingSquaresSpinnerModule],
-  declarations: [SearchComponent, NavbarComponent, SpinnerComponent, ErrorComponent],
-  exports: [SearchComponent, NavbarComponent, SpinnerComponent, ErrorComponent]
+  declarations: [SearchComponent, NavbarComponent, SpinnerComponent, ErrorComponent, FooterComponent],
+  exports: [SearchComponent, NavbarComponent, SpinnerComponent, ErrorComponent, FooterComponent]
 })
 export class DesignModule {}
