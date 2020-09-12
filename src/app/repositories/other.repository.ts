@@ -22,6 +22,12 @@ export class OtherRepository implements OnInit {
     loaded: false
   };
 
+  // Maps
+  public maps = {
+    data: [],
+    loaded: false
+  };
+
   constructor(private restService: RestService) {
     this.restService.getLanguages().subscribe(languages => {
       this.languages.data = languages;
@@ -36,6 +42,11 @@ export class OtherRepository implements OnInit {
     this.restService.getQueues().subscribe(queues => {
       this.queues.data = queues;
       this.queues.loaded = true;
+    });
+
+    this.restService.getMaps().subscribe(queues => {
+      this.maps.data = queues;
+      this.maps.loaded = true;
     });
   }
 

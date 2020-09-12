@@ -48,6 +48,10 @@ export class RestService {
     return this.http.get<[]>(environment.apiUrl + 'other/queues');
   }
 
+  getMaps() {
+    return this.http.get<[]>(environment.apiUrl + 'other/maps');
+  }
+
   getVersions() {
     return this.http.get<[]>(environment.apiUrl + 'other/versions');
   }
