@@ -155,8 +155,6 @@ export class SummonerRepository implements OnInit {
   requestValidCheck(data: object): boolean {
     // @ts-ignore
     const controller = isEmpty(data) ? false : (!(includes(data.status, 404)));
-    console.log(data);
-    console.log(controller);
     return controller;
   }
 

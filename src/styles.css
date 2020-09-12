@@ -1,22 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* Main Design */
-.top-relative-area {
-  position: relative;
-  width: 100%;
-  height: 450px;
-}
-
 .top-shelf {
-  height: 450px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: -1;
   background-size: cover;
+  height: 350px;
+  background-position: 0 70%;
   background-repeat: no-repeat;
-  background-position: 0 -100px;
   background-image: url("./assets/img/top-img.png");
 }
 
@@ -101,5 +90,41 @@ a.text-dark-blue:hover {
 
 .rounded-10 {
   border-radius: 10px;
+}
+
+.rounded-b-10 {
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.rounded-t-10 {
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.rounded-r-10 {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.rounded-l-10 {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.rounded-br-10 {
+  border-bottom-right-radius: 10px;
+}
+
+.rounded-bl-10 {
+  border-bottom-left-radius: 10px;
+}
+
+.rounded-tr-10 {
+  border-top-right-radius: 10px;
+}
+
+.rounded-tl-10 {
+  border-top-left-radius: 10px;
 }
 /* Summoner Component */
